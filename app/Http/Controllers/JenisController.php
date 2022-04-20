@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Jenis;
+use Psy\Util\Str;
 
 class JenisController extends Controller
 {
@@ -14,8 +15,8 @@ class JenisController extends Controller
      */
     public function index()
     {
-        $data = Jenis::all();
-        return view('data-jenis', compact('data'));
+        $data['jenis'] = Jenis::all();
+        return view('admin.jenis.index', $data);
     }
 
     /**
@@ -23,9 +24,9 @@ class JenisController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createJenis()
+    public function create()
     {
-        return view('add-jenis');
+        return view('admin.jenis.form');
     }
 
     /**
@@ -34,17 +35,26 @@ class JenisController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeJenis(Request $request)
+    public function store(Request $request)
     {
-        $request->validate([
-            'nama_jenis' => 'required',
-        ]);
+        $rules = [
+            'jenis' => 'required|unique:jenis',
+        ];
 
-        Jenis::create([
-            'nama_jenis' => $request['nama_jenis'],
-        ]);
+        $customMessages = [
+            'jenis.required' => 'Jenis wajib diisi!',
+            'jenis.unique' => 'Jenis sudah digunakan!',
+        ];
 
-        return redirect('data-jenis');
+        $this->validate($request, $rules, $customMessages);
+
+         //Start Input
+         $input = $request->all();
+         $status = Jenis::create($input);
+
+         if ($status){
+            return redirect()->route('jenis.index')->with('success', 'Data Jenis berhasil ditambahkan');
+        }
     }
 
     /**
@@ -53,7 +63,7 @@ class JenisController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showJenis($id)
+    public function show($id)
     {
         //
     }
@@ -64,10 +74,10 @@ class JenisController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editJenis($id)
+    public function edit($id)
     {
-        $jenis = Jenis::findorFail($id);
-        return view('edit-jenis', compact('jenis'));
+        $data['jenis'] = Jenis::find($id);
+        return view('admin.jenis.form', $data);
     }
 
     /**
@@ -77,19 +87,27 @@ class JenisController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateJenis(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'nama_jenis' => 'required',
-        ]);
+        $rules = [
+            'jenis' => 'required|unique:jenis',
+        ];
 
+        $customMessages = [
+            'jenis.required' => 'Jenis wajib diisi!',
+            'jenis.unique' => 'Jenis sudah digunakan!',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        //Start Input
         $jenis = Jenis::find($id);
+        $update = $request->all();
+        $status = $jenis->update($update);
 
-        $jenis = $jenis->update([
-            'nama_jenis' => $request['nama_jenis'],
-        ]);
-
-        return redirect('data-jenis');
+        if ($status){
+            return redirect()->route('jenis.index')->with('success', 'Data Jenis berhasil diubah');
+        }
     }
 
     /**
@@ -98,10 +116,14 @@ class JenisController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroyJenis($id)
+    public function destroy($id)
     {
-        $jenis = Jenis::findOrFail($id);
-        $jenis->delete();
-        return redirect('data-jenis');
+        $jenis = Jenis::find($id);
+        $status = $jenis->delete();
+        if ($status){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 }

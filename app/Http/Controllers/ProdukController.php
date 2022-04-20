@@ -20,7 +20,8 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        
+        $data['produk'] = Produk::with(['jenis', 'detail'])->get();
+        return view('admin.produk.index', $data);
     }
 
     /**
@@ -28,12 +29,12 @@ class ProdukController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function data()
-    {
-        $datas = Produk::with(['jenis', 'detail'])->get();
-        // dd($datas);
-        return view('data', compact('datas'));
-    }
+    // public function data()
+    // {
+    //     $datas = Produk::with(['jenis', 'detail'])->get();
+    //     // dd($datas);
+    //     return view('data', compact('datas'));
+    // }
     public function create()
     {
         $dataJenis = Jenis::all();
@@ -79,7 +80,7 @@ class ProdukController extends Controller
             'warna_id' => $request['warna_id'],
             'stok' => $request['stok'],
             'deskripsi' => $request['deskripsi'],
-            'spesifikasi' => $request['spesifikasi'],
+            'spesifikasi' => $request['spesifikasi'],   
             'hpp' => $request['hpp'],
             'harga_jual' => $request['harga_jual'], 
             'foto_produk' => $imageName,

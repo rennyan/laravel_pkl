@@ -26,7 +26,7 @@
                             <td>{{ $no++ }}</td>
                             <td>{{$jenis->nama_jenis}}</td>  
                             <td>
-                                <a href="{{ route('editJenis',$jenis->id) }}"><button class="btn btn-warning">Edit</button></a>
+                                <a href="{{ route('editJenis', $jenis->id) }}"><button class="btn btn-warning">Edit</button></a>
                                     <form method="POST" action="{{ route('destroyJenis', $jenis->id ) }}">
                                         @csrf
                                         @method('DELETE')

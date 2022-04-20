@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Warna;
+use Psy\Util\Str;
 
 class WarnaController extends Controller
 {
@@ -14,8 +15,8 @@ class WarnaController extends Controller
      */
     public function index()
     {
-        $data = Warna::all();
-        return view('data-warna', compact('data'));
+        $data['warna'] = Warna::all();
+        return view('admin.warna.index', $data);
     }
 
     /**
@@ -23,9 +24,9 @@ class WarnaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createWarna()
+    public function create()
     {
-        return view('add-warna');
+        return view('admin.warna.form');
     }
 
     /**
@@ -34,17 +35,26 @@ class WarnaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeWarna(Request $request)
+    public function store(Request $request)
     {
-        $request->validate([
-            'warna' => 'required',
-        ]);
+        $rules = [
+            'warna' => 'required|unique:warnas',
+        ];
 
-        Warna::create([
-            'warna' => $request['warna'],
-        ]);
+        $customMessages = [
+            'warna.required' => 'Warna wajib diisi!',
+            'warna.unique' => 'Warna sudah digunakan!',
+        ];
 
-        return redirect('data-warna');
+        $this->validate($request, $rules, $customMessages);
+
+        //Start Input
+        $input = $request->all();
+        $status = Warna::create($input);
+
+        if ($status){
+            return redirect()->route('warna.index')->with('success', 'Data Warna berhasil ditambahkan');
+        }
     }
 
     /**
@@ -64,10 +74,10 @@ class WarnaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editWarna($id)
+    public function edit($id)
     {
-        $warna = Warna::findorFail($id);
-        return view('edit-warna', compact('warna'));
+        $data['warna'] = Warna::find($id);
+        return view('admin.warna.form', $data);
     }
 
     /**
@@ -77,19 +87,27 @@ class WarnaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateWarna(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'warna' => 'required',
-        ]);
+        $rules = [
+            'warna' => 'required|unique:warnas',
+        ];
 
+        $customMessages = [
+            'warna.required' => 'Warna wajib diisi!',
+            'warna.unique' => 'Warna sudah digunakan!',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        //Start Input
         $warna = Warna::find($id);
+        $update = $request->all();
+        $status = $warna->update($update);
 
-        $warna = $warna->update([
-            'warna' => $request['warna'],
-        ]);
-
-        return redirect('data-warna');
+        if ($status){
+            return redirect()->route('warna.index')->with('success', 'Data Warna berhasil diubah');
+        }
     }
 
     /**
@@ -98,10 +116,14 @@ class WarnaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroyWarna($id)
+    public function destroy($id)
     {
-        $warna = Warna::findOrFail($id);
-        $warna->delete();
-        return redirect('data-warna');
+        $warna = Warna::find($id);
+        $status = $warna->delete();
+        if ($status){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 }
