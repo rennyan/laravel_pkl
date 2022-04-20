@@ -35,7 +35,7 @@
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Dashboard</span><i data-feather="more-horizontal"></i>
             </li>
-            <li class=" nav-item active"><a class="d-flex align-items-center" href="{{url('/home')}}"><i data-feather='home'></i><span class="menu-title text-truncate" data-i18n="Dashboard">Dashboard</span></a>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('/home')}}"><i data-feather='home'></i><span class="menu-title text-truncate" data-i18n="Dashboard">Dashboard</span></a>
             </li>
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Product</span><i data-feather="more-horizontal"></i>
             </li>
@@ -43,9 +43,9 @@
             </li>
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Master</span><i data-feather="more-horizontal"></i>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('warna.index')}}"><i data-feather="github"></i><span class="menu-title text-truncate" data-i18n="Email">Warna</span></a>
+            <li class=" @yield('warna')"><a class="d-flex align-items-center" href="{{route('warna.index')}}"><i data-feather='droplet'></i><span class="menu-title text-truncate" data-i18n="Email">Warna</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('jenis.index')}}"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Jenis</span></a>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('jenis.index')}}"><i data-feather='archive'></i><span class="menu-title text-truncate" data-i18n="Chat">Jenis</span></a>
             </li>
         </ul> 
     </div>

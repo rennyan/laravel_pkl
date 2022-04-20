@@ -16,25 +16,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/admin/vendors/css/vendors.min.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/admin/vendors/css/extensions/toastr.min.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/admin/vendors/css/extensions/sweetalert2.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('../../../app-assets/vendors/css/vendors.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/admin/vendors/css/charts/apexcharts.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/admin/vendors/css/extensions/toastr.min.css">
 
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/admin/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/admin/css/bootstrap-extended.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/admin/css/colors.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/admin/css/components.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/admin/css/themes/dark-layout.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/admin/css/themes/bordered-layout.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/admin/css/themes/semi-dark-layout.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/admin/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/admin/css/bootstrap-extended.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/admin/css/colors.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/admin/css/components.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/admin/css/themes/dark-layout.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/admin/css/themes/bordered-layout.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/admin/css/themes/semi-dark-layout.css">
 
     <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/admin/css/core/menu/menu-types/vertical-menu.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/admin/css/pages/dashboard-ecommerce.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/admin/css/plugins/extensions/ext-component-toastr.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/admin/css/core/menu/menu-types/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/admin/css/pages/dashboard-ecommerce.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/admin/css/plugins/charts/chart-apex.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/admin/css/plugins/extensions/ext-component-toastr.css">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
@@ -70,22 +71,22 @@
 
 
 <!-- BEGIN: Vendor JS-->
-<script src="{{asset('assets')}}/admin/vendors/js/vendors.min.js"></script>
+<script src="{{ asset('assets') }}/admin/vendors/js/vendors.min.js"></script>
 <!-- BEGIN Vendor JS-->
 
 <!-- BEGIN: Page Vendor JS-->
-<script src="{{asset('assets')}}/admin/vendors/js/extensions/toastr.min.js"></script>
-<script src="{{asset('assets')}}/admin/vendors/js/extensions/sweetalert2.all.min.js"></script>
+<script src="{{ asset('assets') }}/admin/vendors/js/charts/apexcharts.min.js"></script>
+<script src="{{ asset('assets') }}/admin/vendors/js/extensions/toastr.min.js"></script>
 
 <!-- END: Page Vendor JS-->
 
 <!-- BEGIN: Theme JS-->
-<script src="{{asset('assets')}}/admin/js/core/app-menu.js"></script>
-<script src="{{asset('assets')}}/admin/js/core/app.js"></script>
+<script src="{{ asset('assets') }}/admin/js/core/app-menu.js"></script>
+<script src="{{ asset('assets') }}/admin/js/core/app.js"></script>
 <!-- END: Theme JS-->
 
 <!-- BEGIN: Page JS-->
-<script src="{{asset('assets')}}/admin/js/scripts/pages/dashboard-ecommerce.js"></script>
+<script src="{{ asset('assets') }}/admin/js/scripts/pages/dashboard-ecommerce.js"></script>
 <!-- END: Page JS-->
 
 <script>

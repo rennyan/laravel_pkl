@@ -1,4 +1,5 @@
 @extends('admin.layouts.app')
+@section('warna', 'active')
 @section('title')
      Form {{@$warna ? ' Ubah' : ' Tambah'}}
 @endsection

@@ -1,5 +1,7 @@
 @extends('admin.layouts.app')
-@section('title','Data Warna')
+@section('title', 'Data Warna')
+@section('warna', 'active')
+
 
 @section('content')
     <div class="app-content content ">
